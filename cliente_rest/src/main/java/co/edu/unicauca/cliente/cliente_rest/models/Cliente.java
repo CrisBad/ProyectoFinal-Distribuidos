@@ -8,6 +8,7 @@ public class Cliente {
     private String apellido;
     private String email;
     private Date createAt;
+    private String correr;
 
     public Cliente(){
 
