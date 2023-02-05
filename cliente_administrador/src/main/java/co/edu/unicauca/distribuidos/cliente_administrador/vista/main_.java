@@ -1,14 +1,16 @@
 package co.edu.unicauca.distribuidos.cliente_administrador.vista;
 import java.util.Scanner;
+import java.util.List;
+import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
 
-// import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
-// import co.edu.unicauca.distribuidos.cliente_administrador.model.clienteAdmin;
-import co.edu.unicauca.distribuidos.cliente_administrador.servicio.adminClientServices;
+import co.edu.unicauca.distribuidos.cliente_administrador.model.clienteAdmin;
+import co.edu.unicauca.distribuidos.cliente_administrador.servicio.*;
 public class main_ {
     
     public static void main(String[] args) {
 		
 		adminClientServices objClienteServices= new adminClientServices();
+        adminClienteServicesProducts objClientSProducts = new adminClienteServicesProducts();
 		//System.out.println("\n eliminando un cliente");
         //Boolean bandera= objClienteServices.eliminarCliente(2);
 	    try (Scanner objScanneer = new Scanner (System.in)) {
@@ -21,12 +23,13 @@ public class main_ {
             System.out.println(result);
         }
 
-        // System.out.println("-----------------------------------");
-        // List<ProductoEntity> listaDeProductos= objClienteServices.listarProductos();
+        
+        System.out.println("-----------------------------------");
+        List<ProductoEntity> listaDeProductos= objClientSProducts.listarProductos();
 
-        //     for (ProductoEntity producto : listaDeProductos) {
-        //              imprimirProducto(producto);
-        //      }
+            for (ProductoEntity producto : listaDeProductos) {
+                     imprimirProducto(producto);
+             }
 
 
 	    
@@ -45,7 +48,7 @@ public class main_ {
 		//System.out.println(objCliente.getNombre());
 		//System.out.println(objCliente.getApellido());
 
-	}
+	}*/
     private static void imprimirProducto(ProductoEntity objProd)
 	{
 		System.out.println(objProd.getName());
@@ -53,5 +56,5 @@ public class main_ {
 		//System.out.println(objCliente.getApellido());
 
 	}
-    */
+    
 }
