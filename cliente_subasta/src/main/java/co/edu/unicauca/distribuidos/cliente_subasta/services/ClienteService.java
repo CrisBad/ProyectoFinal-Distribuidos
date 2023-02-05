@@ -27,9 +27,9 @@ public class ClienteService {
 
     public boolean verificarlogin(String username,String password){
         boolean bandera=false;
-        if(consultarAdmin(username)!=null){
-            clienteAdmin  objClientAdmin=consultarAdmin(username);
-            if(objClientAdmin.getUsuario().equals(username)&&objClientAdmin.getClave().equals(password)){
+        if(consultarCliente(username)!=null){
+            Cliente  objCliente=consultarCliente(username);
+            if(objCliente.getUsuario().equals(username)&&objCliente.getClave().equals(password)){
             bandera = true;
             }else{
             bandera=false;
@@ -40,24 +40,24 @@ public class ClienteService {
         return bandera;
     }
 
-    public clienteAdmin consultarAdmin(String username){
-        clienteAdmin  objClientAdmin=null;	
+    public Cliente consultarCliente(String username){
+        Cliente  objCliente=null;	
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint+username);
 		
 		Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);	
 		
-		// objClientAdmin = objPeticion.get(clienteAdmin.class);
+		// objCliente = objPeticion.get(Cliente.class);
 		Response respuesta = objPeticion.get();
 
         if (respuesta.getStatus() == HttpStatus.OK.value()) {
-            objClientAdmin = respuesta.readEntity(clienteAdmin.class);
+            objCliente = respuesta.readEntity(Cliente.class);
         } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-            System.out.println("El administrador no fue encontrado");
+            System.out.println("El cliente no fue encontrado");
         } else {
             // Manejar otro tipo de errores
         }
-		return objClientAdmin;
+		return objCliente;
     }
 
     //revisar
@@ -75,16 +75,16 @@ public class ClienteService {
 		return objProducto;
     }
 
-    public List<clienteAdmin> listarAdmins(){
-        List<clienteAdmin> listaAdm=null;			
+    public List<Cliente> listarClientes(){
+        List<Cliente> listaCli=null;			
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);
 		
 		Builder objPeticion=target.request(MediaType.APPLICATION_JSON);
 		
-		listaAdm = objPeticion.get(new GenericType<List<clienteAdmin>>() {});	
+		listaCli = objPeticion.get(new GenericType<List<Cliente>>() {});	
 		
-		return listaAdm;    
+		return listaCli;    
     }
 
     public List<ProductoEntity> listarProductos(){
@@ -95,16 +95,16 @@ public class ClienteService {
         return productos;
     }
 
-    public clienteAdmin registrarAdmin(clienteAdmin objAdmin){
-        clienteAdmin  objManager=null;
+    public Cliente registrarCliente(Cliente objCliente){
+        Cliente  objManager=null;
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
 		
-	    Entity<clienteAdmin> data = Entity.entity(objAdmin, MediaType.APPLICATION_JSON_TYPE);
+	    Entity<Cliente> data = Entity.entity(objCliente, MediaType.APPLICATION_JSON_TYPE);
 	    
 	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
 	    
-	    objManager = objPeticion.post(data, clienteAdmin.class);		
+	    objManager = objPeticion.post(data, Cliente.class);		
 	    
 		return objManager;
     }

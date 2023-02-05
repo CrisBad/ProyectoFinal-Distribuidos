@@ -28,7 +28,7 @@ public class ProductoService {
     public boolean verificarlogin(String username,String password){
         boolean bandera=false;
         if(consultarAdmin(username)!=null){
-            clienteAdmin  objClientAdmin=consultarAdmin(username);
+            Cliente  objClientAdmin=consultarAdmin(username);
             if(objClientAdmin.getUsuario().equals(username)&&objClientAdmin.getClave().equals(password)){
             bandera = true;
             }else{
@@ -40,18 +40,18 @@ public class ProductoService {
         return bandera;
     }
 
-    public clienteAdmin consultarAdmin(String username){
-        clienteAdmin  objClientAdmin=null;	
+    public Cliente consultarAdmin(String username){
+        Cliente  objClientAdmin=null;	
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint+username);
 		
 		Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);	
 		
-		// objClientAdmin = objPeticion.get(clienteAdmin.class);
+		// objClientAdmin = objPeticion.get(Cliente.class);
 		Response respuesta = objPeticion.get();
 
         if (respuesta.getStatus() == HttpStatus.OK.value()) {
-            objClientAdmin = respuesta.readEntity(clienteAdmin.class);
+            objClientAdmin = respuesta.readEntity(Cliente.class);
         } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
             System.out.println("El administrador no fue encontrado");
         } else {
@@ -75,14 +75,14 @@ public class ProductoService {
 		return objProducto;
     }
 
-    public List<clienteAdmin> listarAdmins(){
-        List<clienteAdmin> listaAdm=null;			
+    public List<Cliente> listarAdmins(){
+        List<Cliente> listaAdm=null;			
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);
 		
 		Builder objPeticion=target.request(MediaType.APPLICATION_JSON);
 		
-		listaAdm = objPeticion.get(new GenericType<List<clienteAdmin>>() {});	
+		listaAdm = objPeticion.get(new GenericType<List<Cliente>>() {});	
 		
 		return listaAdm;    
     }
@@ -95,16 +95,16 @@ public class ProductoService {
         return productos;
     }
 
-    public clienteAdmin registrarAdmin(clienteAdmin objAdmin){
-        clienteAdmin  objManager=null;
+    public Cliente registrarAdmin(Cliente objAdmin){
+        Cliente  objManager=null;
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
 		
-	    Entity<clienteAdmin> data = Entity.entity(objAdmin, MediaType.APPLICATION_JSON_TYPE);
+	    Entity<Cliente> data = Entity.entity(objAdmin, MediaType.APPLICATION_JSON_TYPE);
 	    
 	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
 	    
-	    objManager = objPeticion.post(data, clienteAdmin.class);		
+	    objManager = objPeticion.post(data, Cliente.class);		
 	    
 		return objManager;
     }

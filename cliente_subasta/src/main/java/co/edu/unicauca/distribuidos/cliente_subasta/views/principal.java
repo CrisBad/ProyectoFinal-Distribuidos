@@ -4,7 +4,7 @@ import co.edu.unicauca.distribuidos.cliente_subasta.services.*;
 public class principal {
     public static void main(String[] args) {
 		
-		adminClientServices objClienteServices= new adminClientServices();
+		ClienteService objClienteServices= new ClienteService();
 		//System.out.println("\n eliminando un cliente");
         //Boolean bandera= objClienteServices.eliminarCliente(2);
 	    try (Scanner objScanneer = new Scanner (System.in)) {

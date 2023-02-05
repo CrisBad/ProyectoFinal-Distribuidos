@@ -1,15 +1,15 @@
 package co.edu.unicauca.distribuidos.cliente_subasta.models;
 
-public class Producto {
+public class ProductoEntity {
     private int code;
     private String name;
     private long initValue;
     private State state;
     
-    public Producto() {
+    public ProductoEntity() {
     }
 
-    public Producto(int code, String name, long initValue, State state) {
+    public ProductoEntity(int code, String name, long initValue, State state) {
         this.code = code;
         this.name = name;
         this.initValue = initValue;

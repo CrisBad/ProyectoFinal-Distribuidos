@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.List;
 import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
 
-import co.edu.unicauca.distribuidos.cliente_administrador.model.clienteAdmin;
+//import co.edu.unicauca.distribuidos.cliente_administrador.model.clienteAdmin;
 import co.edu.unicauca.distribuidos.cliente_administrador.servicio.*;
 public class main_ {
     
