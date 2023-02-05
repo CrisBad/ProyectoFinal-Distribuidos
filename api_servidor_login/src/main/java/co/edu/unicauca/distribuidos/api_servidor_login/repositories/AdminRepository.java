@@ -81,9 +81,9 @@ public class AdminRepository {
 
     private void cargarAdministradores()
     {
-        AdminEntity objAdmin1= new AdminEntity("David", "Gustin", "dgustin", "123");
+        AdminEntity objAdmin1= new AdminEntity("Andrea", "Lopez", "adnrea", "miclave");
         this.listaDeAdmins.add(objAdmin1);
-        AdminEntity objAdmin2= new AdminEntity("Nicolas", "Muñoz","nmunoz", "1234");
+        AdminEntity objAdmin2= new AdminEntity("Daniel", "Cisneros","dcisneros", "otraclave");
         this.listaDeAdmins.add(objAdmin2);
 
     }

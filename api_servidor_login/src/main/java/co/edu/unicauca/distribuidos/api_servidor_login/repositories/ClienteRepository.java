@@ -81,9 +81,9 @@ public class ClienteRepository {
 
     private void cargarClientes()
     {
-        ClienteEntity objCliente1= new ClienteEntity("Juan", "Perez", "juan@unicauca.edu.co", "13123112", "jperez", "123");
+        ClienteEntity objCliente1= new ClienteEntity("Juan", "Fernandez", "jfdez@unicauca.edu.co", "5123458901", "jfdez", "12345");
         this.listaDeClientes.add(objCliente1);
-        ClienteEntity objCliente2= new ClienteEntity("Catalina", "Lopez", "catalina@unicauca.edu.co", "75634212", "clopez", "1234");
+        ClienteEntity objCliente2= new ClienteEntity("Adriana", "Garcia", "agarcia@unicauca.edu.co", "53402582374", "agarcia", "678910");
         this.listaDeClientes.add(objCliente2);
     }
 }

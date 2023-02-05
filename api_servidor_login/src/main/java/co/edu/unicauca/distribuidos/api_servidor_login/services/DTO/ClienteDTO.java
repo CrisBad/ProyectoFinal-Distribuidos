@@ -32,7 +32,7 @@ public class ClienteDTO {
     @NotNull
     // @Size(min = 10)
     // @Phone
-    @Pattern(regexp = "[5][0-10]{9}")
+    @Pattern(regexp = "[5][0-10]{10}")
     private String telefono;
 
     @NotEmpty
