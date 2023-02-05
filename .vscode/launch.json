@@ -2,13 +2,21 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ApiServidorLoginApplication",
+            "request": "launch",
+            "mainClass": "co.edu.unicauca.distribuidos.api_servidor_login.ApiServidorLoginApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-Menu<cliente_rest>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "co.edu.unicauca.cliente.cliente_rest.vista.Menu",
             "projectName": "cliente_rest",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=54072 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=cliente_rest"
         },
         {
             "type": "java",
