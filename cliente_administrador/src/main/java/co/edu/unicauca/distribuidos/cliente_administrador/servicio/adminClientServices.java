@@ -9,7 +9,10 @@ import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.springframework.http.HttpStatus;
 
 import co.edu.unicauca.distribuidos.cliente_administrador.model.clienteAdmin;
 import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
@@ -20,7 +23,7 @@ public class adminClientServices {
     private Client objClientePeticiones;
 
     public adminClientServices(){
-        this.endPoint="http://127.0.0.1:8085/admins/";
+        this.endPoint="http://127.0.0.1:8084/admins/";
         this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
     }
 
@@ -36,7 +39,7 @@ public class adminClientServices {
         }else{
             bandera = false;
         }
-       return bandera;
+        return bandera;
     }
 
     public clienteAdmin consultarAdmin(String username){
@@ -46,8 +49,16 @@ public class adminClientServices {
 		
 		Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);	
 		
-		objClientAdmin = objPeticion.get(clienteAdmin.class);
-		
+		// objClientAdmin = objPeticion.get(clienteAdmin.class);
+		Response respuesta = objPeticion.get();
+
+        if (respuesta.getStatus() == HttpStatus.OK.value()) {
+            objClientAdmin = respuesta.readEntity(clienteAdmin.class);
+        } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+            System.out.println("El administrador no fue encontrado");
+        } else {
+            // Manejar otro tipo de errores
+        }
 		return objClientAdmin;
     }
 
