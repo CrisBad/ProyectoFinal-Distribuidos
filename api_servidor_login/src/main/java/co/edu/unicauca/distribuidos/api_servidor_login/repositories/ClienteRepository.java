@@ -1,6 +1,6 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.repositories;
+package co.edu.unicauca.distribuidos.api_servidor_login.repositories;
 
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.models.ClienteEntity;
+import co.edu.unicauca.distribuidos.api_servidor_login.models.ClienteEntity;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,19 +12,19 @@ public class ClienteRepository {
     private List<ClienteEntity> listaDeClientes;
 
     public ClienteRepository(){
-        this.listaDeClientes = new ArrayList <ClientEntity>();
+        this.listaDeClientes = new ArrayList <ClienteEntity>();
         cargarClientes();
     }
 
-    public List<ClientEntity> findAll(){
+    public List<ClienteEntity> findAll(){
         System.out.println("Invocando a listar todos");
         return this.listaDeClientes;
     }
 
-    public ClientEntity findByID(String usuario){
+    public ClienteEntity findByID(String usuario){
         System.out.println("Invocando a consultar cliente");
-        ClientEntity objCliente=null;
-        for (ClientEntity client : listaDeClientes) {
+        ClienteEntity objCliente=null;
+        for (ClienteEntity client : listaDeClientes) {
             if(client.getUsuario().equals(usuario)){
                 objCliente=client;
                 break;
@@ -33,18 +33,18 @@ public class ClienteRepository {
         return objCliente;
     }
 
-    public ClientEntity save(ClientEntity cliente){
+    public ClienteEntity save(ClienteEntity cliente){
         System.out.println("Invocando a guardar cliente");
-        ClientEntity objClient = null;
+        ClienteEntity objClient = null;
         if(this.listaDeClientes.add(cliente)){
             objClient=cliente;
         }
         return objClient;
     }
 
-    public ClientEntity update (String usuario, ClientEntity cliente){
+    public ClienteEntity update (String usuario, ClienteEntity cliente){
         System.out.println("Invocando a actualizar cliente");
-        ClientEntity objCliente = null;
+        ClienteEntity objCliente = null;
         for (int i = 0; i < this.listaDeClientes.size(); i++) {
             if(this.listaDeClientes.get(i).getUsuario().equals(usuario)){
                 this.listaDeClientes.set(i,cliente);
@@ -71,7 +71,7 @@ public class ClienteRepository {
     public boolean verifyProfile(String usuario, String clave){
         System.out.println("Invocando a verificar iniciar sesion");
         boolean flag = false;
-        for (ClientEntity cliente : listaDeClientes) {
+        for (ClienteEntity cliente : listaDeClientes) {
             if(cliente.getUsuario().equals(usuario) && cliente.getClave().equals(clave)){
                 flag=true;
             }
@@ -81,9 +81,9 @@ public class ClienteRepository {
 
     private void cargarClientes()
     {
-        ClientEntity objCliente1= new ClientEntity("Juan", "Perez", "juan@unicauca.edu.co", "13123112", "jperez", "123");
+        ClienteEntity objCliente1= new ClienteEntity("Juan", "Perez", "juan@unicauca.edu.co", "13123112", "jperez", "123");
         this.listaDeClientes.add(objCliente1);
-        ClientEntity objCliente2= new ClientEntity("Catalina", "Lopez", "catalina@unicauca.edu.co", "75634212", "clopez", "1234");
+        ClienteEntity objCliente2= new ClienteEntity("Catalina", "Lopez", "catalina@unicauca.edu.co", "75634212", "clopez", "1234");
         this.listaDeClientes.add(objCliente2);
     }
 }

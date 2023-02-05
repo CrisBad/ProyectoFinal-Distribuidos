@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ApiServidorProductoApplication",
+            "request": "launch",
+            "mainClass": "co.edu.unicauca.distribuidos.api_servidor_producto.ApiServidorProductoApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Launch ApiServidorLoginApplication",
             "request": "launch",
             "mainClass": "co.edu.unicauca.distribuidos.api_servidor_login.ApiServidorLoginApplication",

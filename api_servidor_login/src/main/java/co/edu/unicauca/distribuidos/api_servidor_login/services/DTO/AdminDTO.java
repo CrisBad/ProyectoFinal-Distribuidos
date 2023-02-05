@@ -1,9 +1,8 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.DTO;
+package co.edu.unicauca.distribuidos.api_servidor_login.services.DTO;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

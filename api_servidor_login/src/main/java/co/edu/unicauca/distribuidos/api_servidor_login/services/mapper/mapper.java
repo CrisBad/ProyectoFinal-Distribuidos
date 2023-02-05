@@ -1,4 +1,4 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.mapper;
+package co.edu.unicauca.distribuidos.api_servidor_login.services.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

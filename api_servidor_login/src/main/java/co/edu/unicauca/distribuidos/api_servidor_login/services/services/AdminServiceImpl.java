@@ -1,8 +1,8 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.services;
+package co.edu.unicauca.distribuidos.api_servidor_login.services.services;
 
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.models.AdminEntity;
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.repositories.AdminRepository;
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.AdminDTO;
+import co.edu.unicauca.distribuidos.api_servidor_login.models.AdminEntity;
+import co.edu.unicauca.distribuidos.api_servidor_login.repositories.AdminRepository;
+import co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.AdminDTO;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AdminServiceImpl {
+public class AdminServiceImpl implements IAdminService{
     //INYECCION DE DEPENDENCIAS
     @Autowired
-    private ClientRepository adminRepositorio;
+    private AdminRepository adminRepositorio;
 
     @Autowired
     private ModelMapper modelMapper;

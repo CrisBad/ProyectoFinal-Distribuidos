@@ -1,17 +1,17 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.controllers;
+package co.edu.unicauca.distribuidos.api_servidor_login.controllers;
 
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.AdminDTO;
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.services.IAdminService;
+import co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.AdminDTO;
+import co.edu.unicauca.distribuidos.api_servidor_login.services.services.IAdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("admins")
 public class AdminRestController {
     //INYECCION DE DEPENDENCIAS

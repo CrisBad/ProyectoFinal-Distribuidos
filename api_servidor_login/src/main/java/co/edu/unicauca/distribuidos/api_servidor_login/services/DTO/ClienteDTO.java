@@ -1,14 +1,14 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.DTO;
+package co.edu.unicauca.distribuidos.api_servidor_login.services.DTO;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-// import lombok.experimental.FieldNameConstants;
 
 @Getter 
 @Setter 
@@ -30,8 +30,9 @@ public class ClienteDTO {
 
     @NotEmpty
     @NotNull
-    @Size(min = 10)
-    @Phone
+    // @Size(min = 10)
+    // @Phone
+    @Pattern(regexp = "[5][0-10]{9}")
     private String telefono;
 
     @NotEmpty

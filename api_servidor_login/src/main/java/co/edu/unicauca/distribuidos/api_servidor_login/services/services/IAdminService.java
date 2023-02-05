@@ -1,6 +1,6 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.services;
+package co.edu.unicauca.distribuidos.api_servidor_login.services.services;
 
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.AdminDTO;
+import co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.AdminDTO;
 
 import java.util.List;
 

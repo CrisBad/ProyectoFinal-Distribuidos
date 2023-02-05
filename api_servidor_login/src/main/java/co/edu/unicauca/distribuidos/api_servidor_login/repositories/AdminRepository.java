@@ -1,6 +1,6 @@
-package main.java.co.edu.unicauca.distribuidos.api_servidor_login.repositories;
+package co.edu.unicauca.distribuidos.api_servidor_login.repositories;
 
-import main.java.co.edu.unicauca.distribuidos.api_servidor_login.models.AdminEntity;
+import co.edu.unicauca.distribuidos.api_servidor_login.models.AdminEntity;
 
 import org.springframework.stereotype.Repository;
 
