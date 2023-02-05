@@ -1,6 +1,4 @@
 package co.edu.unicauca.distribuidos.cliente_administrador.vista;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
@@ -38,7 +36,6 @@ public class main_ {
         //     for (clienteAdmin cliente : listaDeClientes) {
         //             imprimirCliente(cliente);
         //     }
-               
 	
 	}
     private static void imprimirCliente(clienteAdmin objCliente)
