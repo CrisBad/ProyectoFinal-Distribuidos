@@ -93,7 +93,7 @@ public class main_ {
         //     }
 	
 	}
-    
+
     private static void imprimirCliente(clienteAdmin objCliente)
 	{
 		System.out.println(objCliente.getUsuario()+" -- "+objCliente.getNombre()+" -- "+objCliente.getApellido());

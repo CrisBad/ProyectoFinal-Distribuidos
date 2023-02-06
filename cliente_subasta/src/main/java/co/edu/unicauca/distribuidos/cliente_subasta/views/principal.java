@@ -33,9 +33,6 @@ public class principal {
             System.out.println("Nombre: " + p.getName());
             System.out.println("Estado: " + p.getState());
         }
-
-        ProductoEntity prod = objProductoServices.AbrirSubastaProducto(2);
-        System.out.println(prod.getState());
         
         RefreshThread objRefreshThread = new RefreshThread(2, objProductoServices);
         objRefreshThread.start();

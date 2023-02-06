@@ -45,52 +45,6 @@ public class ProductoService {
         }
 		return objProducto;
     }
-
-    public ProductoEntity AbrirSubastaProducto(int code){
-        ProductoEntity objProducto=null;	
-        WebTarget target = this.objProductoPeticiones.target(this.endPoint+code);
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);	
-        Response respuesta = objPeticion.get();
-    
-        if (respuesta.getStatus() == HttpStatus.OK.value()) {
-            objProducto = respuesta.readEntity(ProductoEntity.class);
-            objProducto.setState(State.En_Subasta);
-    
-            // Actualizar el estado en el servidor
-            Response respuestaActualizacion = objPeticion.put(Entity.json(objProducto));
-            if (respuestaActualizacion.getStatus() != HttpStatus.OK.value()) {
-                System.out.println("Error al actualizar el estado del producto");
-            }
-        } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-            System.out.println("El producto no fue encontrado");
-        } else {
-            // Manejar otro tipo de errores
-        }
-        return objProducto;
-    }
-
-    public ProductoEntity CerrarSubastaProducto(int code){
-        ProductoEntity objProducto=null;	
-        WebTarget target = this.objProductoPeticiones.target(this.endPoint+code);
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);	
-        Response respuesta = objPeticion.get();
-    
-        if (respuesta.getStatus() == HttpStatus.OK.value()) {
-            objProducto = respuesta.readEntity(ProductoEntity.class);
-            objProducto.setState(State.No_Subasta);
-    
-            // Actualizar el estado en el servidor
-            Response respuestaActualizacion = objPeticion.put(Entity.json(objProducto));
-            if (respuestaActualizacion.getStatus() != HttpStatus.OK.value()) {
-                System.out.println("Error al actualizar el estado del producto");
-            }
-        } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-            System.out.println("El producto no fue encontrado");
-        } else {
-            // Manejar otro tipo de errores
-        }
-        return objProducto;
-    }
     
     public List<ProductoEntity> listarProductos(){
         List<ProductoEntity> productos=null;
