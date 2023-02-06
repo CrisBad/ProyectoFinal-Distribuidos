@@ -1,20 +1,17 @@
 package co.edu.unicauca.distribuidos.cliente_subasta.services;
 
-import java.util.List;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.http.HttpStatus;
 
-import co.edu.unicauca.distribuidos.cliente_subasta.models.*;
+import co.edu.unicauca.distribuidos.cliente_subasta.models.ClienteEntity;
 
 public class ClienteService {
     private String endPoint;
@@ -28,7 +25,7 @@ public class ClienteService {
     public boolean verificarlogin(String username,String password){
         boolean bandera=false;
         if(consultarCliente(username)!=null){
-            Cliente  objCliente=consultarCliente(username);
+            ClienteEntity  objCliente=consultarCliente(username);
             if(objCliente.getUsuario().equals(username)&&objCliente.getClave().equals(password)){
             bandera = true;
             }else{
@@ -40,8 +37,8 @@ public class ClienteService {
         return bandera;
     }
 
-    public Cliente consultarCliente(String username){
-        Cliente  objCliente=null;	
+    public ClienteEntity consultarCliente(String username){
+        ClienteEntity  objCliente=null;	
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint+username);
 		
@@ -51,7 +48,7 @@ public class ClienteService {
 		Response respuesta = objPeticion.get();
 
         if (respuesta.getStatus() == HttpStatus.OK.value()) {
-            objCliente = respuesta.readEntity(Cliente.class);
+            objCliente = respuesta.readEntity(ClienteEntity.class);
         } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
             System.out.println("El cliente no fue encontrado");
         } else {
@@ -61,51 +58,18 @@ public class ClienteService {
     }
 
     //revisar
-    public ProductoEntity crearProducto(ProductoEntity objProductoRegis){
-        ProductoEntity objProducto=null;
+    public ClienteEntity registrarCliente(ClienteEntity objProductoRegis){
+        ClienteEntity objProducto=null;
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
 		
-	    Entity<ProductoEntity> data = Entity.entity(objProductoRegis, MediaType.APPLICATION_JSON_TYPE);
-	    
-	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
-	    
-	    objProducto = objPeticion.post(data, ProductoEntity.class);		
-	    
+        Entity<ClienteEntity> data = Entity.entity(objProductoRegis, MediaType.APPLICATION_JSON_TYPE);
+        
+        Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
+        
+        objProducto = objPeticion.post(data, ClienteEntity.class);		
+
 		return objProducto;
     }
 
-    public List<Cliente> listarClientes(){
-        List<Cliente> listaCli=null;			
-		
-		WebTarget target = this.objClientePeticiones.target(this.endPoint);
-		
-		Builder objPeticion=target.request(MediaType.APPLICATION_JSON);
-		
-		listaCli = objPeticion.get(new GenericType<List<Cliente>>() {});	
-		
-		return listaCli;    
-    }
-
-    public List<ProductoEntity> listarProductos(){
-        List<ProductoEntity> productos=null;
-        WebTarget target = this.objClientePeticiones.target(this.endPoint);
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
-        productos = objPeticion.get(new GenericType<List<ProductoEntity>>(){});
-        return productos;
-    }
-
-    public Cliente registrarCliente(Cliente objCliente){
-        Cliente  objManager=null;
-		
-		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
-		
-	    Entity<Cliente> data = Entity.entity(objCliente, MediaType.APPLICATION_JSON_TYPE);
-	    
-	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
-	    
-	    objManager = objPeticion.post(data, Cliente.class);		
-	    
-		return objManager;
-    }
 }
