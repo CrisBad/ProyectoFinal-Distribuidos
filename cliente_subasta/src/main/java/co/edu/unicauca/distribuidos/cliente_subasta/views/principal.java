@@ -9,8 +9,18 @@ import co.edu.unicauca.distribuidos.cliente_subasta.services.RefreshThread;
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
 public class principal {
     public static void main(String[] args) {
-		
-		ClienteService objClienteServices= new ClienteService();
+		pruebaInterfaz();
+        // pruebaConsola();
+    }
+
+    public static void pruebaInterfaz(){
+        JFrameSubasta objFr = new JFrameSubasta();
+        Thread hiloAlterno = new Thread(objFr);
+        hiloAlterno.start();
+    }
+
+    public static void pruebaConsola(){
+        ClienteService objClienteServices= new ClienteService();
 		ProductoService objProductoServices= new ProductoService();
 
         try (Scanner objScanner = new Scanner (System.in)) {

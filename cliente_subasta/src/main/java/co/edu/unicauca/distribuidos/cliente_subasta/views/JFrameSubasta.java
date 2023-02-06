@@ -4,13 +4,15 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
+import co.edu.unicauca.distribuidos.cliente_subasta.models.State;
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ProductoService;
 
-public class JFrameSubasta extends javax.swing.JFrame{
+public class JFrameSubasta extends javax.swing.JFrame implements Runnable{
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
@@ -42,7 +44,21 @@ public class JFrameSubasta extends javax.swing.JFrame{
     public JFrameSubasta() {
         objProductoServices = new ProductoService();
         iniciarComponentes();
-        cargarProductos();
+        setVisible(true);
+    }
+
+    @Override
+    public void run() {
+        // código a ejecutar en el hilo alterno
+        while (true) {
+            System.out.println("Refreshing...");
+            cargarProductos();
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void iniciarComponentes(){
@@ -58,13 +74,20 @@ public class JFrameSubasta extends javax.swing.JFrame{
     }
 
     public void cargarProductos(){
+        limpiarTabla();
         for (ProductoEntity p : objProductoServices.listarProductos()) {
             model.addRow(new Object[] {p.getCode(), p.getName(), p.getInitValue(), p.getState()});
         }
         tblProductos.setModel(model);
     }
 
-    @SuppressWarnings("unchecked")
+    public void limpiarTabla(){
+        int filas = model.getRowCount()-1;
+        for (int i = filas; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
@@ -320,11 +343,39 @@ public class JFrameSubasta extends javax.swing.JFrame{
     }                                        
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        if (jTextField1.getText().equals("")) {
+            limpiarTxt();
+        }else{
+            try {
+                int code = Integer.parseInt(jTextField1.getText());
+                ProductoEntity objProducto = objProductoServices.consultarProducto(code);
+                if (objProducto!=null) {
+                    jTextField2.setText(objProducto.getName());
+                    jTextField3.setText(Long.toString(objProducto.getInitValue()));
+                    jTextField4.setText(objProducto.getState().toString());
+                    if (objProducto.getState() != State.En_Subasta) {
+                        JOptionPane.showMessageDialog(null, "El producto no se encuentra en subasta", "Consultar producto", JOptionPane.WARNING_MESSAGE);
+                    }
+                }else{
+                    limpiarTxt();
+                }
+            } catch (NumberFormatException e) {
+                limpiarTxt();
+                JOptionPane.showMessageDialog(null, "Debe ingresar un número entero", "Consultar producto", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }   
     
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+    }
+
+    public void limpiarTxt(){
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
     }
 
     public static void centerFrameOnScreen(JFrame frame) {
