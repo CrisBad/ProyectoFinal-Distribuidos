@@ -10,10 +10,9 @@ public class main_ {
     public static void main(String[] args) {
 
 		ProductoEntity objProducto = new ProductoEntity();
+        clienteAdmin objAdminC = new clienteAdmin();
 		adminClientServices objClienteServices= new adminClientServices();
         adminClienteServicesProducts objClientSProducts = new adminClienteServicesProducts();
-		//System.out.println("\n eliminando un cliente");
-        //Boolean bandera= objClienteServices.eliminarCliente(2);
 	    try (Scanner objScanneer = new Scanner (System.in)) {
             System.out.print("Ingrese el nombre de usuario : ");
             String user=objScanneer.nextLine();
@@ -53,7 +52,36 @@ public class main_ {
             for (ProductoEntity producto : listaDeProductoss) {
                      imprimirProducto(producto);
              }
+
+         System.out.println("----Registrar Admin-------------------");
+            //Scanner objScanneerr = new Scanner (System.in);
+            objScanneer.nextLine();
+            System.out.println("nombre : ");
+            String nameA = objScanneer.nextLine();
+            System.out.println("apellido : ");
+            String apellidoA = objScanneer.nextLine();
+            System.out.println("username : ");
+            String usernameA = objScanneer.nextLine();
+            System.out.println("clave : ");
+            String claveA = objScanneer.nextLine();
+            //System.out.println("Entrada: "+nameA+"|"+apellidoA+"|"+usernameA+"|"+claveA);
+            objAdminC.setNombre(nameA);
+            objAdminC.setApellido(apellidoA);
+            objAdminC.setUsuario(usernameA);
+            objAdminC.setClave(claveA);
+            //System.out.println("obj: "+objAdminC.getUsuario()+"*"+objAdminC.getClave());
+            //System.out.println(objAdminC);
+            clienteAdmin reusltRC = objClienteServices.registrarAdmin(objAdminC);
+
+            //------
+            List<clienteAdmin> listaDeClientes= objClienteServices.listarAdmins();
+
+            for (clienteAdmin cliente : listaDeClientes) {
+                    imprimirCliente(cliente);
+            }
         }
+
+
 
         
         
@@ -65,14 +93,14 @@ public class main_ {
         //     }
 	
 	}
-    /* 
+    
     private static void imprimirCliente(clienteAdmin objCliente)
 	{
 		System.out.println(objCliente.getUsuario()+" -- "+objCliente.getNombre()+" -- "+objCliente.getApellido());
 		//System.out.println(objCliente.getNombre());
 		//System.out.println(objCliente.getApellido());
 
-	}*/
+	}
     private static void imprimirProducto(ProductoEntity objProd)
 	{
 		System.out.println(objProd.getName()+"|"+objProd.getCode()+"|"+objProd.getInitValue());

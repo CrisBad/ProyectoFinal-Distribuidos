@@ -15,7 +15,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.http.HttpStatus;
 
 import co.edu.unicauca.distribuidos.cliente_administrador.model.clienteAdmin;
-import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
+//import co.edu.unicauca.distribuidos.cliente_administrador.model.ProductoEntity;
 //import co.edu.unicauca.distribuidos.api_servidor_producto.models.ProductoEntity; 
 
 public class adminClientServices {
@@ -63,19 +63,19 @@ public class adminClientServices {
     }
 
     //revisar
-    public ProductoEntity crearProducto(ProductoEntity objProductoRegis){
-        ProductoEntity objProducto=null;
+    // public ProductoEntity crearProducto(ProductoEntity objProductoRegis){
+    //     ProductoEntity objProducto=null;
 		
-		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
+	// 	WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
 		
-	    Entity<ProductoEntity> data = Entity.entity(objProductoRegis, MediaType.APPLICATION_JSON_TYPE);
+	//     Entity<ProductoEntity> data = Entity.entity(objProductoRegis, MediaType.APPLICATION_JSON_TYPE);
 	    
-	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
+	//     Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
 	    
-	    objProducto = objPeticion.post(data, ProductoEntity.class);		
+	//     objProducto = objPeticion.post(data, ProductoEntity.class);		
 	    
-		return objProducto;
-    }
+	// 	return objProducto;
+    // }
 
     public List<clienteAdmin> listarAdmins(){
         List<clienteAdmin> listaAdm=null;			
