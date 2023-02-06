@@ -89,16 +89,9 @@ public class adminClientServices {
 		return listaAdm;    
     }
 
-    public List<ProductoEntity> listarProductos(){
-        List<ProductoEntity> productos=null;
-        WebTarget target = this.objClientePeticiones.target(this.endPoint);
-        Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
-        productos = objPeticion.get(new GenericType<List<ProductoEntity>>(){});
-        return productos;
-    }
 
     public clienteAdmin registrarAdmin(clienteAdmin objAdmin){
-        clienteAdmin  objManager=null;
+        clienteAdmin  objClAdmin=null;
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
 		
@@ -106,8 +99,8 @@ public class adminClientServices {
 	    
 	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
 	    
-	    objManager = objPeticion.post(data, clienteAdmin.class);		
+	    objClAdmin = objPeticion.post(data, clienteAdmin.class);		
 	    
-		return objManager;
+		return objClAdmin;
     }
 }
