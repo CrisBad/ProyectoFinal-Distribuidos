@@ -45,6 +45,7 @@ public class main_ {
             objProducto.setInitValue(initVal);
             objProducto.setState(State.En_Subasta);
 	    ProductoEntity resultRProduct = objClientSProducts.registrarProducto(objProducto);
+        resultRProduct.getName();
 
         System.out.println("-------------------list2----------------");
         List<ProductoEntity> listaDeProductoss= objClientSProducts.listarProductos();
@@ -72,6 +73,7 @@ public class main_ {
             //System.out.println("obj: "+objAdminC.getUsuario()+"*"+objAdminC.getClave());
             //System.out.println(objAdminC);
             clienteAdmin reusltRC = objClienteServices.registrarAdmin(objAdminC);
+            reusltRC.getNombre();
 
             //------
             List<clienteAdmin> listaDeClientes= objClienteServices.listarAdmins();

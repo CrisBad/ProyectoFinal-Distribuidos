@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.client.Entity;
+//import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -15,7 +15,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.http.HttpStatus;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
-import co.edu.unicauca.distribuidos.cliente_subasta.models.State;
+//import co.edu.unicauca.distribuidos.cliente_subasta.models.State;
 
 public class ProductoService {
     private String endPoint;
