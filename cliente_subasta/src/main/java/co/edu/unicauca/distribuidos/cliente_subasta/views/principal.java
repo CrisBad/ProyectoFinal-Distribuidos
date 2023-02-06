@@ -1,6 +1,7 @@
 package co.edu.unicauca.distribuidos.cliente_subasta.views;
 
 import java.util.Scanner;
+import java.util.List;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ClienteService;
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ProductoService;
@@ -24,12 +25,17 @@ public class principal {
             int code = objScanner.nextInt();
             ProductoEntity producto = objProductoServices.consultarProducto(code);
             System.out.println(producto.getName());
+
         }
 
         System.out.println("Productos");
         for (ProductoEntity p : objProductoServices.listarProductos()) {
             System.out.println("Nombre: " + p.getName());
+            System.out.println("Estado: " + p.getState());
         }
+
+        ProductoEntity prod = objProductoServices.AbrirSubastaProducto(2);
+        System.out.println(prod.getState());
         
         RefreshThread objRefreshThread = new RefreshThread(2, objProductoServices);
         objRefreshThread.start();

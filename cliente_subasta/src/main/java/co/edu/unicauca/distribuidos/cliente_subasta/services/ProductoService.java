@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -14,6 +15,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.springframework.http.HttpStatus;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
+import co.edu.unicauca.distribuidos.cliente_subasta.models.State;
 
 public class ProductoService {
     private String endPoint;
@@ -44,6 +46,52 @@ public class ProductoService {
 		return objProducto;
     }
 
+    public ProductoEntity AbrirSubastaProducto(int code){
+        ProductoEntity objProducto=null;	
+        WebTarget target = this.objProductoPeticiones.target(this.endPoint+code);
+        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);	
+        Response respuesta = objPeticion.get();
+    
+        if (respuesta.getStatus() == HttpStatus.OK.value()) {
+            objProducto = respuesta.readEntity(ProductoEntity.class);
+            objProducto.setState(State.En_Subasta);
+    
+            // Actualizar el estado en el servidor
+            Response respuestaActualizacion = objPeticion.put(Entity.json(objProducto));
+            if (respuestaActualizacion.getStatus() != HttpStatus.OK.value()) {
+                System.out.println("Error al actualizar el estado del producto");
+            }
+        } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+            System.out.println("El producto no fue encontrado");
+        } else {
+            // Manejar otro tipo de errores
+        }
+        return objProducto;
+    }
+
+    public ProductoEntity CerrarSubastaProducto(int code){
+        ProductoEntity objProducto=null;	
+        WebTarget target = this.objProductoPeticiones.target(this.endPoint+code);
+        Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);	
+        Response respuesta = objPeticion.get();
+    
+        if (respuesta.getStatus() == HttpStatus.OK.value()) {
+            objProducto = respuesta.readEntity(ProductoEntity.class);
+            objProducto.setState(State.No_Subasta);
+    
+            // Actualizar el estado en el servidor
+            Response respuestaActualizacion = objPeticion.put(Entity.json(objProducto));
+            if (respuestaActualizacion.getStatus() != HttpStatus.OK.value()) {
+                System.out.println("Error al actualizar el estado del producto");
+            }
+        } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+            System.out.println("El producto no fue encontrado");
+        } else {
+            // Manejar otro tipo de errores
+        }
+        return objProducto;
+    }
+    
     public List<ProductoEntity> listarProductos(){
         List<ProductoEntity> productos=null;
         WebTarget target = this.objProductoPeticiones.target(this.endPoint);
