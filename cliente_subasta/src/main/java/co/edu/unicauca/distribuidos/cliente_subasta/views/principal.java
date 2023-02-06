@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ClienteService;
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ProductoService;
+import co.edu.unicauca.distribuidos.cliente_subasta.services.RefreshThread;
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
 public class principal {
     public static void main(String[] args) {
 		
 		ClienteService objClienteServices= new ClienteService();
 		ProductoService objProductoServices= new ProductoService();
-		
+
         try (Scanner objScanner = new Scanner (System.in)) {
             System.out.print("Ingrese el nombre de usuario : ");
             String user=objScanner.nextLine();
@@ -24,5 +25,13 @@ public class principal {
             ProductoEntity producto = objProductoServices.consultarProducto(code);
             System.out.println(producto.getName());
         }
+
+        System.out.println("Productos");
+        for (ProductoEntity p : objProductoServices.listarProductos()) {
+            System.out.println("Nombre: " + p.getName());
+        }
+        
+        RefreshThread objRefreshThread = new RefreshThread(2, objProductoServices);
+        objRefreshThread.start();
     }
 }

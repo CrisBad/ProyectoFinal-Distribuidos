@@ -1,23 +1,31 @@
 package co.edu.unicauca.distribuidos.cliente_subasta.services;
 
-import java.util.concurrent.TimeUnit;
+import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
 
-public class RefreshThread extends Thread{
+public class RefreshThread extends Thread {
+    private int code;
+    private ProductoService objProductoServices;
+    
+    public RefreshThread(int code, ProductoService objProductoServices) {
+        this.code = code;
+        this.objProductoServices = objProductoServices;
+    }
+    
+    @Override
     public void run() {
         while (true) {
-            // Llame al método que realiza la consulta al servicio web
-            int code=0;
-            refrescarInfoProductos(code);
+            ProductoEntity producto = objProductoServices.consultarProducto(code);
+            System.out.println("Refrescando...");
+            System.out.println("Code: " + producto.getCode());
+            System.out.println("Nombre: " + producto.getName());
+            System.out.println("Value: " + producto.getInitValue());
+            System.out.println("State: " + producto.getState());
             try {
-                TimeUnit.SECONDS.sleep(4);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
-                // Maneje la excepción si es necesario
                 e.printStackTrace();
             }
         }
     }
-    
-    private void refrescarInfoProductos(int code) {
-        // Aquí debe incluir el código para consultar el servicio web
-    }
 }
+
