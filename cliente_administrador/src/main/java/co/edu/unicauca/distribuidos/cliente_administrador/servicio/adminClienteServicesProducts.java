@@ -33,5 +33,17 @@ public class adminClienteServicesProducts {
         return productos;
     }
     
-    
+    public ProductoEntity registrarProducto(ProductoEntity objProducto){
+        ProductoEntity  objProdu=null;
+		
+		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
+		
+	    Entity<ProductoEntity> data = Entity.entity(objProducto, MediaType.APPLICATION_JSON_TYPE);
+	    
+	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
+	    
+	    objProdu = objPeticion.post(data, ProductoEntity.class);		
+	    
+		return objProdu;
+    }
 }
