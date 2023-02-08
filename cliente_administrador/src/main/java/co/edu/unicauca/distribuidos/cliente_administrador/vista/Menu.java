@@ -4,8 +4,8 @@ public class Menu {
     public static void main(String[] args) {
         //ClienteServices objClienteServices = new ClienteServices();
         
-		login lg = new login();
-		lg.setVisible(true);
+		login inicio = new login();
+		inicio.setVisible(true);
 
      
     }
