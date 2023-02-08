@@ -103,7 +103,7 @@ public class FrmSubastaAC extends javax.swing.JFrame{
         // TODO add your handling code here:
         abrirSubasta();
         this.dispose();
-        panel_control panel= new panel_control();
+        FrmInicio panel= new FrmInicio();
         panel.setVisible(true);
         
        
@@ -113,7 +113,7 @@ public class FrmSubastaAC extends javax.swing.JFrame{
         // TODO add your handling code here:
         cerrarSubasta();
         this.dispose();
-        panel_control panel= new panel_control();
+        FrmInicio panel= new FrmInicio();
         panel.setVisible(true);
         
     }  

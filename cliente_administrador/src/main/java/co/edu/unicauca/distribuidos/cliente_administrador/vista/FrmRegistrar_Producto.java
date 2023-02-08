@@ -115,7 +115,7 @@ public class FrmRegistrar_Producto extends javax.swing.JFrame{
         // TODO add your handling code here:
         registrar_Producto();
         this.dispose();
-        panel_control panel = new panel_control();
+        FrmInicio panel = new FrmInicio();
         panel.setVisible(true);
     }                                                
     /*private void ItemsEstado(){
