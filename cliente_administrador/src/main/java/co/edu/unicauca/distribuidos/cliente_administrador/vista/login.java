@@ -37,7 +37,7 @@ public class login extends javax.swing.JFrame {
         lblContraseña.setText("Contraseña:");
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTitulo.setText("Inicio de Sesión");
+        lblTitulo.setText("Login");
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,15 +111,15 @@ public class login extends javax.swing.JFrame {
         String contraseña = new String(password);
         
         if(usuario.isEmpty() || contraseña.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Algún campo está vacio.");
+            JOptionPane.showMessageDialog(null, "Debe lenar todos los campos.");
         }
         else{
             //if(usuario.equals("admin") && contraseña.equals("admin")){
             boolean validacionLoginAdmin = objClienteServices.verificarlogin(usuario, contraseña);
             if(validacionLoginAdmin){
-                JOptionPane.showMessageDialog(null, "Bienvenido");
-                panel_control pc = new panel_control();
-                pc.setVisible(true);
+                JOptionPane.showMessageDialog(null, usuario+" tiene acceso");
+                panel_control panelPrincipal = new panel_control();
+                panelPrincipal.setVisible(true);
                 this.dispose();
             }
             else{
