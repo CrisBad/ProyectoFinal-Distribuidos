@@ -1,8 +1,10 @@
 package co.edu.unicauca.distribuidos.api_servidor_producto.services.services;
 
 import co.edu.unicauca.distribuidos.api_servidor_producto.models.ProductoEntity;
+import co.edu.unicauca.distribuidos.api_servidor_producto.models.State;
 import co.edu.unicauca.distribuidos.api_servidor_producto.repositories.ProductoRepository;
 import co.edu.unicauca.distribuidos.api_servidor_producto.services.DTO.ProductoDTO;
+import lombok.val;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -60,5 +62,12 @@ public class ServiceProductoImpl implements IServiceProducto {
     public boolean delete(int code) {
         return this.productoRepository.delete(code);
     }
-    
+
+    @Override
+    public ProductoDTO updateValue(int code, long valor) {
+        // ProductoEntity productoEntity = this.modelMapper.map(findById(code),ProductoEntity.class);
+        ProductoEntity productoEntityUpdate = this.productoRepository.updateValue(code,valor);
+        ProductoDTO productoDTO = this.modelMapper.map(productoEntityUpdate,ProductoDTO.class);
+        return productoDTO;
+    }
 }

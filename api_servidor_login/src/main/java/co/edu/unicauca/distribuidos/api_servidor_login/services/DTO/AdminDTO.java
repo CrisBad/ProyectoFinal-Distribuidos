@@ -13,23 +13,23 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AdminDTO {
     @NotEmpty
-    @NotNull
-    @Size(min = 5,max = 50)
+    @NotNull(message = "{user.name.empty}")
+    @Size(min = 5,max = 50, message = "La cantidad de caracteres del nombre deber estar entre 5 y 50")
     private String nombre;
 
     @NotEmpty
     @NotNull
-    @Size(min = 5,max = 50)
+    @Size(min = 5,max = 50, message = "La cantidad de caracteres del apellido deber estar entre 5 y 50")
     private String apellido;
 
     @NotEmpty
     @NotNull
-    @Size(min = 10,max = 20)
+    @Size(min = 10,max = 20, message = "La cantidad de caracteres del usuario deber estar entre 10 y 20")
     private String usuario;
 
     @NotEmpty
     @NotNull
-    @Size(min = 10,max = 20)
+    @Size(min = 10,max = 20, message = "La cantidad de caracteres de la contraseña deber estar entre 10 y 20")
     private String clave;
 
     public AdminDTO(){}

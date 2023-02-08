@@ -60,4 +60,15 @@ public class ProductoController {
         return bandera;
     }
 
+    @PostMapping("/oferta/{code}/{valor}")
+    @ResponseBody
+    public ProductoDTO updateValue(@PathVariable int code, @PathVariable long valor){
+        // System.out.println("Entro al controller");
+        ProductoDTO objProducto = null;
+        ProductoDTO productoActual = this.serviceProducto.findById(code);
+        if(productoActual != null){
+            objProducto = this.serviceProducto.updateValue(code, valor);
+        }
+        return objProducto;
+    }
 }

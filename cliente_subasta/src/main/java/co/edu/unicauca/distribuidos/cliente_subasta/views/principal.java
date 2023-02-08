@@ -9,7 +9,11 @@ import co.edu.unicauca.distribuidos.cliente_subasta.services.RefreshThread;
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
 public class principal {
     public static void main(String[] args) {
-		pruebaInterfaz();
+	//pruebaInterfaz();
+        JFInicio objI = new JFInicio();
+        //JFOferta objO = new JFOferta();
+        //objI.setVisible(true);
+        //objO.setVisible(true);
         // pruebaConsola();
     }
 

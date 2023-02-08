@@ -15,16 +15,16 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ClienteDTO {
     @NotEmpty
-    @NotNull
-    @Size(min = 5,max = 50)
+    @NotNull(message = "{user.name.empty}")
+    @Size(min = 5,max = 50, message = "La cantidad de caracteres del nombre deber estar entre 5 y 50")
     private String nombre;
 
     @NotEmpty
     @NotNull
-    @Size(min = 5,max = 50)
+    @Size(min = 5,max = 50, message = "La cantidad de caracteres del apellido deber estar entre 5 y 50")
     private String apellido;
 
-    @Email
+    @Email(message = "{user.email.mask}")
     @NotNull
     private String email;
 
@@ -32,17 +32,17 @@ public class ClienteDTO {
     @NotNull
     // @Size(min = 10)
     // @Phone
-    @Pattern(regexp = "[5][0-10]{10}")
+    @Pattern(message = "{user.telephone.pattern}",regexp = "[5][0-10]{10}")
     private String telefono;
 
     @NotEmpty
     @NotNull
-    @Size(min = 10,max = 20)
+    @Size(min = 10,max = 20, message = "La cantidad de caracteres del usuario deber estar entre 10 y 20")
     private String usuario;
 
     @NotEmpty
     @NotNull
-    @Size(min = 10,max = 20)
+    @Size(min = 10,max = 20, message = "La cantidad de caracteres de la contraseña deber estar entre 10 y 20")
     private String clave;
 
     public ClienteDTO(){}
