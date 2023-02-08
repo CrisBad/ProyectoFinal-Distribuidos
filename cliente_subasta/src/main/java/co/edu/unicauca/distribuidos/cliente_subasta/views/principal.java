@@ -1,7 +1,6 @@
 package co.edu.unicauca.distribuidos.cliente_subasta.views;
 
 import java.util.Scanner;
-//import java.util.List;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ClienteService;
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ProductoService;

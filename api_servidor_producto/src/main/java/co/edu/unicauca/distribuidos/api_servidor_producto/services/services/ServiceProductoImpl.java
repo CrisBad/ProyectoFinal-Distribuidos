@@ -1,10 +1,8 @@
 package co.edu.unicauca.distribuidos.api_servidor_producto.services.services;
 
 import co.edu.unicauca.distribuidos.api_servidor_producto.models.ProductoEntity;
-import co.edu.unicauca.distribuidos.api_servidor_producto.models.State;
 import co.edu.unicauca.distribuidos.api_servidor_producto.repositories.ProductoRepository;
 import co.edu.unicauca.distribuidos.api_servidor_producto.services.DTO.ProductoDTO;
-import lombok.val;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

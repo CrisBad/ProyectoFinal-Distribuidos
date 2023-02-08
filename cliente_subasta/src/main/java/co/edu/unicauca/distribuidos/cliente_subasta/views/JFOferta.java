@@ -81,9 +81,9 @@ public class JFOferta extends javax.swing.JFrame implements Runnable {
         ProductoEntity objProducto = objProductoServices.consultarProducto(code);
         jLabel8.setText(Integer.toString(code));
         jLabel2.setText(objProducto.getName());
-        NumberFormat formatter = NumberFormat.getInstance();
-        String formattedValue = formatter.format(objProducto.getInitValue());
-        jLabel6.setText(formattedValue);
+        //NumberFormat formatter = NumberFormat.getInstance();
+        //String formattedValue = formatter.format(objProducto.getInitValue());
+        jLabel6.setText(Long.toString(objProducto.getInitValue()));
 
         jLabel4.setText(objProducto.getState().toString());
     }
@@ -233,6 +233,7 @@ public class JFOferta extends javax.swing.JFrame implements Runnable {
         if (!jTextField1.getText().equals("")) {
             try {
                 long oferta = Long.parseLong(jTextField1.getText());
+                //long oferta = Long.parseLong(jTextField1.getText().replaceAll(",",""));
                 //System.out.println("Codigo: " + codigo + " Oferta: " + oferta);
                 if(oferta>Long.parseLong(jLabel6.getText())){
                     int codigo = Integer.parseInt(jLabel8.getText());
@@ -243,9 +244,11 @@ public class JFOferta extends javax.swing.JFrame implements Runnable {
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "La oferta debe ser mayor a la actual", "Realizar oferta", JOptionPane.WARNING_MESSAGE);
+                    jTextField1.setText("");
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar un número entero", "Realizar oferta", JOptionPane.ERROR_MESSAGE);
+                jTextField1.setText("");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
