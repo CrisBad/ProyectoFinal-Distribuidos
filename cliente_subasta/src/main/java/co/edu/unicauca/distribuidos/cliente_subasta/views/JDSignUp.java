@@ -221,13 +221,8 @@ public class JDSignUp extends javax.swing.JDialog {
     }
     
     private boolean validar_correo(String email){
-        if (EmailValidator.isValid(email)) {
-            //System.out.println("Valid email address");
-            return true;
-        } else {
-            //System.out.println("Invalid email address");
-            return false;
-        }
+        return EmailValidator.isValid(email); //System.out.println("Valid email address");
+        //System.out.println("Invalid email address");
     }
     
     private boolean validar_login(String login){
