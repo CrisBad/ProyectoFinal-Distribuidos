@@ -43,6 +43,11 @@ public class panel_control extends javax.swing.JFrame{
         });
 
         btnAbrirCerrarSubasta.setText("Abrir-Cerrar Subasta");
+        btnAbrirCerrarSubasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirCerrarSubastaActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,7 +119,9 @@ public class panel_control extends javax.swing.JFrame{
     }      
     private void btnAbrirCerrarSubastaActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         // TODO add your handling code here:
-        listarProductostbl();
+        FrmSubastaAC FrmSub = new FrmSubastaAC();
+        FrmSub.setVisible(true);
+        this.dispose();
     } 
     
     private void listarProductostbl(){
