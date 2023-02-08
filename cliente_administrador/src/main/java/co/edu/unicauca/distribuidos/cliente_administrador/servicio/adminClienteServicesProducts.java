@@ -62,9 +62,11 @@ public class adminClienteServicesProducts {
             Response respuestaActualizacion = objPeticion.put(Entity.json(objProducto));
             if (respuestaActualizacion.getStatus() != HttpStatus.OK.value()) {
                 System.out.println("Error al actualizar el estado del producto");
+                return null;
             }
         } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
             System.out.println("El producto no fue encontrado");
+            return null;
         } else {
             // Manejar otro tipo de errores
         }
@@ -85,9 +87,11 @@ public class adminClienteServicesProducts {
             Response respuestaActualizacion = objPeticion.put(Entity.json(objProducto));
             if (respuestaActualizacion.getStatus() != HttpStatus.OK.value()) {
                 System.out.println("Error al actualizar el estado del producto");
+                return null;
             }
         } else if (respuesta.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
             System.out.println("El producto no fue encontrado");
+            return null;
         } else {
             // Manejar otro tipo de errores
         }

@@ -7,8 +7,6 @@ public class Menu {
 		login lg = new login();
 		lg.setVisible(true);
 
-        //System.out.println("consultando un cliente con id 1");
-        //Cliente objClienteConsultado = objClienteServices.consultarCliente(1);
-        //imprimirCliente(objClienteConsultado);
+     
     }
 }
