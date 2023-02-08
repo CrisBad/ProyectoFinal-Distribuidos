@@ -57,19 +57,19 @@ public class ClienteService {
 		return objCliente;
     }
 
-    //revisar
-    public ClienteEntity registrarCliente(ClienteEntity objProductoRegis){
-        ClienteEntity objProducto=null;
+    public ClienteEntity registrarCliente(ClienteEntity objClienteRegistar)
+	{
+		ClienteEntity  objCliente=null;
 		
 		WebTarget target = this.objClientePeticiones.target(this.endPoint);	    
 		
-        Entity<ClienteEntity> data = Entity.entity(objProductoRegis, MediaType.APPLICATION_JSON_TYPE);
-        
-        Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
-        
-        objProducto = objPeticion.post(data, ClienteEntity.class);		
-
-		return objProducto;
-    }
+	    Entity<ClienteEntity> data = Entity.entity(objClienteRegistar, MediaType.APPLICATION_JSON_TYPE);
+	    
+	    Builder objPeticion=target.request(MediaType.APPLICATION_JSON_TYPE);
+	    
+	    objCliente = objPeticion.post(data, ClienteEntity.class);		
+	    
+		return objCliente;
+	}
 
 }

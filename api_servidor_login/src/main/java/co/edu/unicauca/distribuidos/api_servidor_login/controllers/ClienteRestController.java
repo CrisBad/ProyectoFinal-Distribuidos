@@ -3,7 +3,7 @@ package co.edu.unicauca.distribuidos.api_servidor_login.controllers;
 import co.edu.unicauca.distribuidos.api_servidor_login.services.DTO.ClienteDTO;
 import co.edu.unicauca.distribuidos.api_servidor_login.services.services.IClienteService;
 
-    import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 // import org.springframework.stereotype.Controller;

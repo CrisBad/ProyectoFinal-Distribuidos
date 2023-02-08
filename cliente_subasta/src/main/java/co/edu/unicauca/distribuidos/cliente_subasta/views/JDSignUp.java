@@ -1,12 +1,32 @@
 package co.edu.unicauca.distribuidos.cliente_subasta.views;
 
+import co.edu.unicauca.distribuidos.cliente_subasta.models.ClienteEntity;
+import co.edu.unicauca.distribuidos.cliente_subasta.services.ClienteService;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 public class JDSignUp extends javax.swing.JDialog {
 
     public JDSignUp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        centerFrameOnScreen(this);
     }
 
+    public static void centerFrameOnScreen(JDialog frame) {
+        int width = frame.getWidth();
+        int height = frame.getHeight();
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension screenSize = tk.getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        int x = (screenWidth - width) / 2;
+        int y = (screenHeight - height) / 2;
+        frame.setLocation(x, y);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -151,6 +171,34 @@ public class JDSignUp extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+            // TODO add your handling code here:
+            if(!jTextField1.getText().isEmpty()&& !jTextField2.getText().isEmpty()&& 
+                !jTextField3.getText().isEmpty()&& !jTextField4.getText().isEmpty()&& 
+                !jTextField5.getText().isEmpty()&& !jPasswordField1.getText().equals("")){
+                    String nombres, apellidos, correo, telefono, usuario, clave;
+                    nombres = jTextField1.getText();
+                    apellidos = jTextField2.getText();
+                    correo = jTextField3.getText();
+                    telefono = jTextField4.getText();
+                    usuario = jTextField5.getText();
+                    clave = jPasswordField1.getText();
+                    System.out.println(nombres + " " + apellidos + " " + correo+ " " + telefono + " " + usuario + " " + clave);
+                    ClienteEntity ObjCliente = new ClienteEntity(nombres,
+                                                                apellidos,
+                                                                correo,
+                                                                telefono,
+                                                                usuario, 
+                                                                clave);
+                    ClienteService objClienteServices = new ClienteService();
+                    
+                    if(objClienteServices.registrarCliente(ObjCliente)!=null){
+                        JOptionPane.showMessageDialog(this, "Usuario Registrado");
+                    }
+            }else{
+                JOptionPane.showMessageDialog(this, "name>5y<50,lastname>5y<50, email no null,phone>10, username>10, password>10");
+            }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
