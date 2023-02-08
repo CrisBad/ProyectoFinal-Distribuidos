@@ -24,7 +24,7 @@ public class ClienteDTO {
     @Size(min = 5,max = 50, message = "La cantidad de caracteres del apellido deber estar entre 5 y 50")
     private String apellido;
 
-    @Email(message = "{user.email.mask}")
+    @Email(message = "Debe seguir un formato adecuado")
     @NotNull
     private String email;
 
@@ -32,7 +32,7 @@ public class ClienteDTO {
     @NotNull
     // @Size(min = 10)
     // @Phone
-    @Pattern(message = "{user.telephone.pattern}",regexp = "[5][0-10]{10}")
+    @Pattern(message = "El teléfono debe empezar por 5 y tener 10 dígitos",regexp = "[5][0-9]{9}")
     private String telefono;
 
     @NotEmpty
