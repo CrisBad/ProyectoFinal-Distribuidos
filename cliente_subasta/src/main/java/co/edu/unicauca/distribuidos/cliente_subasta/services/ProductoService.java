@@ -2,10 +2,12 @@ package co.edu.unicauca.distribuidos.cliente_subasta.services;
 
 import java.util.List;
 
+// import javax.swing.text.html.parser.Entity;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation.Builder;
-//import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -53,4 +55,17 @@ public class ProductoService {
         productos = objPeticion.get(new GenericType<List<ProductoEntity>>(){});
         return productos;
     }
+
+    public ProductoEntity actualizarValor(int id, long valor)
+    {
+        ProductoEntity objCliente = null;
+        WebTarget target = this.objProductoPeticiones.target(this.endPoint + "oferta/" + id + "/" + valor);
+        Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON_TYPE);
+        Response response = objPeticion.post(Entity.entity("", MediaType.APPLICATION_JSON_TYPE));
+        if (response.getStatus() == 200) {
+            objCliente = response.readEntity(ProductoEntity.class);
+        }
+        return objCliente;
+    }
+
 }

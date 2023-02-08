@@ -14,6 +14,8 @@ public interface IServiceProducto {
     public ProductoDTO findById(int code);
     //Editar un producto
     public ProductoDTO update(int code, ProductoDTO product);
+    //Actualizar el valor de un producto
+    public ProductoDTO updateValue(int code, long valor);
     //Eliminar un producto
     public boolean delete (int code);
 }
