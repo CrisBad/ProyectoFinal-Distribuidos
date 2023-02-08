@@ -119,6 +119,9 @@ public class login extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        FrmRegistrarAdmin registrarAdmin = new FrmRegistrarAdmin();
+        registrarAdmin.setVisible(true);
+        this.dispose();
     }                                        
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -135,7 +138,7 @@ public class login extends javax.swing.JFrame {
             boolean validacionLoginAdmin = objClienteServices.verificarlogin(usuario, contraseña);
             if(validacionLoginAdmin){
                 JOptionPane.showMessageDialog(null, usuario+" tiene acceso");
-                panel_control panelPrincipal = new panel_control();
+                FrmInicio panelPrincipal = new FrmInicio();
                 panelPrincipal.setVisible(true);
                 this.dispose();
             }
