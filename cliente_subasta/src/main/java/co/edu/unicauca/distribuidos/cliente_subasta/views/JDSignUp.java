@@ -2,6 +2,7 @@ package co.edu.unicauca.distribuidos.cliente_subasta.views;
 
 import co.edu.unicauca.distribuidos.cliente_subasta.models.ClienteEntity;
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ClienteService;
+import co.edu.unicauca.distribuidos.cliente_subasta.services.EmailValidator;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JDialog;
@@ -64,18 +65,6 @@ public class JDSignUp extends javax.swing.JDialog {
         jLabel6.setText("Usuario:");
 
         jLabel7.setText("Contraseña:");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jPasswordField1.setText("jPasswordField1");
 
         jButton1.setText("Registrarse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -170,20 +159,18 @@ public class JDSignUp extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-            // TODO add your handling code here:
-            if(!jTextField1.getText().isEmpty()&& !jTextField2.getText().isEmpty()&& 
-                !jTextField3.getText().isEmpty()&& !jTextField4.getText().isEmpty()&& 
-                !jTextField5.getText().isEmpty()&& !jPasswordField1.getText().equals("")){
-                    String nombres, apellidos, correo, telefono, usuario, clave;
-                    nombres = jTextField1.getText();
-                    apellidos = jTextField2.getText();
-                    correo = jTextField3.getText();
-                    telefono = jTextField4.getText();
-                    usuario = jTextField5.getText();
-                    clave = jPasswordField1.getText();
-                    System.out.println(nombres + " " + apellidos + " " + correo+ " " + telefono + " " + usuario + " " + clave);
+        if(!jTextField1.getText().isEmpty()&& !jTextField2.getText().isEmpty()&& 
+            !jTextField3.getText().isEmpty()&& !jTextField4.getText().isEmpty()&& 
+            !jTextField5.getText().isEmpty()&& !jPasswordField1.getText().equals("")){
+                String nombres, apellidos, correo, telefono, usuario, clave;
+                nombres = jTextField1.getText();
+                apellidos = jTextField2.getText();
+                correo = jTextField3.getText();
+                telefono = jTextField4.getText();
+                usuario = jTextField5.getText();
+                clave = jPasswordField1.getText();
+                if(validar_nombres(nombres)&&validar_apellidos(apellidos)&&validar_correo(correo)&&validar_telefono(telefono)&&validar_login(usuario)&&validar_clave(clave)){
+                    //System.out.println(nombres + " " + apellidos + " " + correo+ " " + telefono + " " + usuario + " " + clave);
                     ClienteEntity ObjCliente = new ClienteEntity(nombres,
                                                                 apellidos,
                                                                 correo,
@@ -191,16 +178,66 @@ public class JDSignUp extends javax.swing.JDialog {
                                                                 usuario, 
                                                                 clave);
                     ClienteService objClienteServices = new ClienteService();
-                    
+
                     if(objClienteServices.registrarCliente(ObjCliente)!=null){
-                        JOptionPane.showMessageDialog(this, "Usuario Registrado");
+                        JOptionPane.showMessageDialog(null, "Usuario registrado", "Signup", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
                     }
-            }else{
-                JOptionPane.showMessageDialog(this, "name>5y<50,lastname>5y<50, email no null,phone>10, username>10, password>10");
-            }
-        
+                }
+                if(!validar_nombres(nombres)){
+                    JOptionPane.showMessageDialog(null, "Nombres entre 5 y 50 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                }
+                if(!validar_apellidos(apellidos)){
+                    JOptionPane.showMessageDialog(null, "Apellidos entre 5 y 50 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                }
+                if(!validar_telefono(telefono)){
+                    JOptionPane.showMessageDialog(null, "El teléfono debe tener 10 dígitos y empezar por 5", "Signup", JOptionPane.WARNING_MESSAGE);
+                }
+                if(!validar_correo(correo)){
+                    JOptionPane.showMessageDialog(null, "Formato de correo inválido", "Signup", JOptionPane.WARNING_MESSAGE);
+                }
+                if(!validar_login(usuario)){
+                    JOptionPane.showMessageDialog(null, "Usuario entre 10 y 20 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                }
+                if(!validar_clave(clave)){
+                    JOptionPane.showMessageDialog(null, "Contraseña entre 10 y 20 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                }
+                
+        }else{
+            JOptionPane.showMessageDialog(null, "Hay campos vacíos", "Signup", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private boolean validar_nombres(String nombres){
+        return nombres.length()>5 && nombres.length()<50;
+    }
+    
+    private boolean validar_apellidos(String apellidos){
+        return apellidos.length()>5 && apellidos.length()<50;
+    }
+    
+    private boolean validar_telefono(String telefono){
+        return telefono.charAt(0) == '5' && telefono.length()==10;
+    }
+    
+    private boolean validar_correo(String email){
+        if (EmailValidator.isValid(email)) {
+            //System.out.println("Valid email address");
+            return true;
+        } else {
+            //System.out.println("Invalid email address");
+            return false;
+        }
+    }
+    
+    private boolean validar_login(String login){
+        return login.length()>10 && login.length()<20;
+    }
+    
+    private boolean validar_clave(String clave){
+        return clave.length()>10 && clave.length()<20;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
