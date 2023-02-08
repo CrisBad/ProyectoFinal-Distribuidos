@@ -185,10 +185,10 @@ public class JDSignUp extends javax.swing.JDialog {
                     }
                 }
                 if(!validar_nombres(nombres)){
-                    JOptionPane.showMessageDialog(null, "Nombres entre 5 y 50 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Nombres > 5 y < 50 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
                 }
                 if(!validar_apellidos(apellidos)){
-                    JOptionPane.showMessageDialog(null, "Apellidos entre 5 y 50 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Apellidos > 5 y < 50 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
                 }
                 if(!validar_telefono(telefono)){
                     JOptionPane.showMessageDialog(null, "El teléfono debe tener 10 dígitos y empezar por 5", "Signup", JOptionPane.WARNING_MESSAGE);
@@ -197,10 +197,10 @@ public class JDSignUp extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Formato de correo inválido", "Signup", JOptionPane.WARNING_MESSAGE);
                 }
                 if(!validar_login(usuario)){
-                    JOptionPane.showMessageDialog(null, "Usuario entre 10 y 20 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Usuario > 10 y < 20 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
                 }
                 if(!validar_clave(clave)){
-                    JOptionPane.showMessageDialog(null, "Contraseña entre 10 y 20 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Contraseña > 10 y < 20 caracteres", "Signup", JOptionPane.WARNING_MESSAGE);
                 }
                 
         }else{
