@@ -4,10 +4,9 @@ import co.edu.unicauca.distribuidos.cliente_subasta.models.ProductoEntity;
 import co.edu.unicauca.distribuidos.cliente_subasta.services.ProductoService;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.text.NumberFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
- 
+
 public class JFOferta extends javax.swing.JFrame implements Runnable {
 
     private ProductoService objProductoServices;
